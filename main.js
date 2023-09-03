@@ -80,16 +80,20 @@ function displayLibrary() {
         bookDiv.textContent += ' (Not Read)';
     }
 
-    bookDel.addEventListener('click',(event)=>{
-      event.preventDefault();
-
-      myLibrary.splice(index, 1)
-    })
+    bookDel.addEventListener('click',createDeleteHandler())
 
     booksContainer.appendChild(bookDivContainer);
     bookDivContainer.appendChild(bookDiv);
     bookDivContainer.appendChild(bookDel);
   });
+}
+
+function createDeleteHandler(index) {
+  return (event) => {
+    event.preventDefault();
+    myLibrary.splice(index, 1);
+    displayLibrary();
+  };
 }
 
 displayLibrary()
