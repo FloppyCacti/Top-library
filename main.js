@@ -1,4 +1,9 @@
-const myLibrary = [];
+const myLibrary = [[
+  author = "J.K. Rollings",
+  haveRead = false,
+  pages = "123",
+  title = "Harry Potter"
+]];
 
 function Book(title, author, pages) {
   this.title = title;
@@ -42,7 +47,6 @@ bookForm.addEventListener('submit',(event) => {
 })
 
 cancelValue.addEventListener('click', (event) =>{
-  event.preventDefault();
 
   titleValue.value = '';
   authorValue = '';
@@ -57,17 +61,35 @@ function displayLibrary() {
   booksContainer.innerHTML = '';
 
   myLibrary.forEach((book, index) => {
-      const bookDiv = document.createElement('div');
-      bookDiv.textContent = `Book ${index + 1}: ${book.title} by ${book.author}, ${book.pages} pages.`;
+    const bookDivContainer = document.createElement('div');
+    bookDivContainer.style.display = 'flex';
 
-      if (book.haveRead) {
-          bookDiv.textContent += ' (Read)';
-      } else {
-          bookDiv.textContent += ' (Not Read)';
-      }
+    const bookDiv = document.createElement('div');
+    bookDiv.setAttribute('data',index);
+    bookDiv.textContent = `Book ${index + 1}: ${book.title} by ${book.author}, ${book.pages} pages.`;
 
-      booksContainer.appendChild(bookDiv);
+    const bookDel = document.createElement('button');
+    bookDel.style.width = '100px';
+    bookDel.style.height = '25px';
+    bookDel.textContent = 'Delete';
+    bookDel.style.marginLeft = 'auto';
+
+    if (book.haveRead) {
+        bookDiv.textContent += ' (Read)';
+    } else {
+        bookDiv.textContent += ' (Not Read)';
+    }
+
+    bookDel.addEventListener('click',(event)=>{
+      event.preventDefault();
+
+      myLibrary.splice(index, 1)
+    })
+
+    booksContainer.appendChild(bookDivContainer);
+    bookDivContainer.appendChild(bookDiv);
+    bookDivContainer.appendChild(bookDel);
   });
 }
 
-addBookToLibrary();
+displayLibrary()

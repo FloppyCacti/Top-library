@@ -44,6 +44,10 @@ body{
     align-self: flex-start;
 }
 
+.book-container > div{
+    padding: 10px;
+}
+
 dialog{
     border-radius: 10px;
 }
