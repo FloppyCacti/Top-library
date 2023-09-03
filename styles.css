@@ -20,7 +20,7 @@ body{
     color: #FFF5E0;
     height: 40px;
     width: 100px;
-    box-shadow: 10px 10px 0px #141E46;
+    box-shadow: 5px 5px 0px #141E46;
 }
 
 .book-container{
@@ -28,4 +28,5 @@ body{
     width: 80%;
     border-radius: 15px;
     height: 50%;
+    box-shadow: 10px 10px 0px #141E46;
 }
