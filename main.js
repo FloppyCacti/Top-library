@@ -1,21 +1,13 @@
-const myLibrary = ['one' , 'two', 'three'];
+const myLibrary = [];
 
 function Book(title, author, pages) {
   this.title = title;
   this.author = author;
   this.pages = pages;
+  this.haveRead = false;
 }
 
-const books = document.querySelector('.book-container');
-
-function addBookToLibrary() {
-  for(let i = 0; i < myLibrary.length; i++){
-    const book = document.createElement('div');
-    book.textContent = myLibrary[i];
-    books.appendChild(book);
-  }
-}
-
+const booksContainer = document.querySelector('.book-container');
 const addBook = document.querySelector('.add-book');
 const bookForm = document.querySelector('#bookForm');
 const titleValue = document.querySelector('#bookTitle');
@@ -36,13 +28,15 @@ bookForm.addEventListener('submit',(event) => {
   const page = pageValue.value;
 
   if(title && author){
-    const newBook = new Book(title, author, page)
-    addBookToLibrary();
+    const newBook = new Book(title, author, page);
+    myLibrary.push(newBook);
 
     titleValue.value = '';
-    authorValue = '';
-    pageValue = '';
+    authorValue.value = '';
+    pageValue.value = '';
+    haveReadValue.checked = false;
 
+    displayLibrary();
   }
   bookForm.close();
 })
@@ -50,7 +44,30 @@ bookForm.addEventListener('submit',(event) => {
 cancelValue.addEventListener('click', (event) =>{
   event.preventDefault();
 
+  titleValue.value = '';
+  authorValue = '';
+  pageValue = '';
+  haveReadValue.checked = false;
+
   bookForm.close();
 })
+
+
+function displayLibrary() {
+  booksContainer.innerHTML = '';
+
+  myLibrary.forEach((book, index) => {
+      const bookDiv = document.createElement('div');
+      bookDiv.textContent = `Book ${index + 1}: ${book.title} by ${book.author}, ${book.pages} pages.`;
+
+      if (book.haveRead) {
+          bookDiv.textContent += ' (Read)';
+      } else {
+          bookDiv.textContent += ' (Not Read)';
+      }
+
+      booksContainer.appendChild(bookDiv);
+  });
+}
 
 addBookToLibrary();
