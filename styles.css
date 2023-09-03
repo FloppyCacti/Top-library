@@ -13,6 +13,16 @@ body{
     flex-direction: column;
 }
 
+.add-book{
+    border-style: none;
+    background-color: #BB2525;
+    border-radius: 5px;
+    color: #FFF5E0;
+    height: 40px;
+    width: 100px;
+    box-shadow: 10px 10px 0px #141E46;
+}
+
 .book-container{
     background-color: #FF6969;
     width: 80%;
