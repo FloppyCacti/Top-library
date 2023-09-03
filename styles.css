@@ -1,6 +1,6 @@
 body{
     margin: 0;
-    background-color: grey;
+    background-color: #FFF5E0;
     height: 100vh;
     align-content: center;
     display: flex;
@@ -9,8 +9,8 @@ body{
     flex-direction: column;
 }
 
-.books{
-    background-color: rgb(228, 228, 228);
+.book-container{
+    background-color: #FF6969;
     width: 80%;
     border-radius: 15px;
     height: 50%;
