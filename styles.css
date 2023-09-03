@@ -38,6 +38,8 @@ body{
     background-color: #FF6969;
     width: 80%;
     border-radius: 15px;
-    height: 50%;
+    height: 75%;
     box-shadow: 10px 10px 0px #141E46;
+    margin: 50px 0 50px 0;
+    align-self: flex-start;
 }
