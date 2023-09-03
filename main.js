@@ -1,7 +1,9 @@
 const myLibrary = ['one' , 'two', 'three'];
 
-function Book() {
-  // the constructor...
+function Book(title, author, pages) {
+  this.title = title;
+  this.author = author;
+  this.pages = pages;
 }
 
 const books = document.querySelector('.book-container');
@@ -15,9 +17,10 @@ function addBookToLibrary() {
 }
 
 const addBook = document.querySelector('.add-book');
+const bookForm = document.querySelector('#bookForm');
 
 addBook.addEventListener('click', () => {
-
+  bookForm.showModal();
 })
 
 addBookToLibrary();

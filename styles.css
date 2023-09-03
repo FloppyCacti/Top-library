@@ -43,3 +43,19 @@ body{
     margin: 50px 0 50px 0;
     align-self: flex-start;
 }
+
+dialog{
+    border-radius: 10px;
+}
+
+form{
+    width: 200px;
+}
+
+form > input{
+    margin-bottom: 15px;
+}
+
+.readOrNot{
+    margin-bottom: 10px;
+}
