@@ -19,7 +19,7 @@ const titleValue = document.querySelector('#bookTitle');
 const authorValue = document.querySelector('#bookAuthor');
 const pageValue = document.querySelector('#bookPages');
 const haveReadValue = document.querySelector('#haveRead');
-const cancelValue = document.querySelector('#cancelBtn')
+const cancelValue = document.querySelector('#cancelBtn');
 
 addBook.addEventListener('click', () => {
   bookForm.showModal();
@@ -31,9 +31,11 @@ bookForm.addEventListener('submit',(event) => {
   const title = titleValue.value;
   const author = authorValue.value;
   const page = pageValue.value;
+  const haveRead = haveReadValue.checked; 
 
   if(title && author){
     const newBook = new Book(title, author, page);
+    newBook.haveRead = haveRead;
     myLibrary.push(newBook);
 
     titleValue.value = '';
