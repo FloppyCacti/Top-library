@@ -7,13 +7,21 @@ body{
     background-color: #FFF5E0;
     height: 100vh;
     display: grid;
-    grid-template-rows: 10% 5% 85%;
+    grid-template-rows: 5% 10% 5% 80%;
     grid-template-columns: 100%;
     align-items: center;
     justify-items: center;
 }
 
+.header{
+    grid-row: 1;
+    width: 100%;
+    background-color: #BB2525;
+    box-shadow: 0px 5px 0px #141E46;
+}
+
 .add-book{
+    grid-row: 3;
     border-style: none;
     background-color: #BB2525;
     border-radius: 5px;
@@ -24,6 +32,7 @@ body{
 }
 
 .book-container{
+    grid-row: 4;
     background-color: #FF6969;
     width: 80%;
     border-radius: 15px;
