@@ -1,8 +1,8 @@
 const myLibrary = [[
-  author = "J.K. Rollings",
-  haveRead = false,
-  pages = "123",
-  title = "Harry Potter"
+  author = 'test',
+  title = 'test1',
+  pages = 'test2',
+  haveRead = true
 ]];
 
 function Book(title, author, pages) {
@@ -58,7 +58,6 @@ cancelValue.addEventListener('click', (event) =>{
   bookForm.close();
 })
 
-
 function displayLibrary() {
   booksContainer.innerHTML = '';
 
@@ -70,11 +69,21 @@ function displayLibrary() {
     bookDiv.setAttribute('data',index);
     bookDiv.textContent = `Book ${index + 1}: ${book.title} by ${book.author}, ${book.pages} pages.`;
 
+    const bookButtons = document.createElement('div');
+    bookButtons.style.marginLeft = 'auto';
+    bookButtons.style.display = 'flex';
+    bookButtons.style.gridTemplate = 'column'
+    bookButtons.style.gap = '10px';
+
     const bookDel = document.createElement('button');
     bookDel.style.width = '100px';
     bookDel.style.height = '25px';
     bookDel.textContent = 'Delete';
-    bookDel.style.marginLeft = 'auto';
+    
+    const bookRead = document.createElement('button');
+    bookRead.style.width = '100px';
+    bookRead.style.height = '25px';
+    bookRead.textContent = 'Read';
 
     if (book.haveRead) {
         bookDiv.textContent += ' (Read)';
@@ -82,11 +91,18 @@ function displayLibrary() {
         bookDiv.textContent += ' (Not Read)';
     }
 
-    bookDel.addEventListener('click',createDeleteHandler())
+    bookDel.addEventListener('click',createDeleteHandler());
+
+    bookRead.addEventListener('click', () => {
+      book.haveRead = true;
+      displayLibrary()
+    })
 
     booksContainer.appendChild(bookDivContainer);
     bookDivContainer.appendChild(bookDiv);
-    bookDivContainer.appendChild(bookDel);
+    bookDivContainer.appendChild(bookButtons);
+    bookButtons.appendChild(bookDel);
+    bookButtons.appendChild(bookRead);
   });
 }
 
