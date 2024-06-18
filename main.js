@@ -1,102 +1,100 @@
-const myLibrary = [[
-  author = 'test',
-  title = 'test1',
-  pages = 'test2',
-  haveRead = true
-]];
+const myLibrary = [[(author = "test"), (title = "test1"), (pages = "test2"), (haveRead = true)]];
 
-function Book(title, author, pages) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.haveRead = false;
+class Book {
+  constructor(title, author, pages) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.haveRead = false;
+  }
 }
 
-const booksContainer = document.querySelector('.book-container');
-const addBook = document.querySelector('.add-book');
-const bookForm = document.querySelector('#bookForm');
-const titleValue = document.querySelector('#bookTitle');
-const authorValue = document.querySelector('#bookAuthor');
-const pageValue = document.querySelector('#bookPages');
-const haveReadValue = document.querySelector('#haveRead');
-const cancelValue = document.querySelector('#cancelBtn');
+const booksContainer = document.querySelector(".book-container");
+const addBook = document.querySelector(".add-book");
+const bookForm = document.querySelector("#bookForm");
+const titleValue = document.querySelector("#bookTitle");
+const authorValue = document.querySelector("#bookAuthor");
+const pageValue = document.querySelector("#bookPages");
+const haveReadValue = document.querySelector("#haveRead");
+const cancelValue = document.querySelector("#cancelBtn");
 
-addBook.addEventListener('click', () => {
+addBook.addEventListener("click", () => {
   bookForm.showModal();
-})
+});
 
-bookForm.addEventListener('submit',(event) => {
+bookForm.addEventListener("submit", (event) => {
   event.preventDefault();
 
   const title = titleValue.value;
   const author = authorValue.value;
   const page = pageValue.value;
-  const haveRead = haveReadValue.checked; 
+  const haveRead = haveReadValue.checked;
 
-  if(title && author){
+  if (title && author) {
     const newBook = new Book(title, author, page);
     newBook.haveRead = haveRead;
     myLibrary.push(newBook);
 
-    titleValue.value = '';
-    authorValue.value = '';
-    pageValue.value = '';
+    titleValue.value = "";
+    authorValue.value = "";
+    pageValue.value = "";
     haveReadValue.checked = false;
 
     displayLibrary();
   }
   bookForm.close();
-})
+});
 
-cancelValue.addEventListener('click', (event) =>{
-
-  titleValue.value = '';
-  authorValue = '';
-  pageValue = '';
+cancelValue.addEventListener("click", (event) => {
+  titleValue.value = "";
+  authorValue = "";
+  pageValue = "";
   haveReadValue.checked = false;
 
   bookForm.close();
-})
+});
 
 function displayLibrary() {
-  booksContainer.innerHTML = '';
+  booksContainer.innerHTML = "";
 
   myLibrary.forEach((book, index) => {
-    const bookDivContainer = document.createElement('div');
-    bookDivContainer.style.display = 'flex';
+    const bookDivContainer = document.createElement("div");
+    bookDivContainer.style.display = "flex";
 
-    const bookDiv = document.createElement('div');
-    bookDiv.setAttribute('data',index);
-    bookDiv.textContent = `Book ${index + 1}: ${book.title} by ${book.author}, ${book.pages} pages.`;
+    const bookDiv = document.createElement("div");
+    bookDiv.setAttribute("data", index);
+    bookDiv.textContent = `Book ${index + 1}: ${book.title} by ${book.author}, ${
+      book.pages
+    } pages.`;
 
-    const bookButtons = document.createElement('div');
-    bookButtons.style.marginLeft = 'auto';
-    bookButtons.style.display = 'flex';
-    bookButtons.style.gridTemplate = 'column'
-    bookButtons.style.gap = '10px';
+    const bookButtons = document.createElement("div");
+    bookButtons.style.marginLeft = "auto";
+    bookButtons.style.display = "flex";
+    bookButtons.style.gridTemplate = "column";
+    bookButtons.style.gap = "10px";
 
-    const bookDel = document.createElement('button');
-    bookDel.style.width = '100px';
-    bookDel.style.height = '25px';
-    bookDel.textContent = 'Delete';
-    
-    const bookRead = document.createElement('button');
-    bookRead.style.width = '100px';
-    bookRead.style.height = '25px';
-    bookRead.textContent = 'Read';
+    const bookDel = document.createElement("button");
+    bookDel.style.width = "100px";
+    bookDel.style.height = "25px";
+    bookDel.textContent = "Delete";
+
+    const bookRead = document.createElement("button");
+    bookRead.style.width = "100px";
+    bookRead.style.height = "25px";
+    bookRead.textContent = "Read";
 
     if (book.haveRead) {
-        bookDiv.textContent += ' (Read)';
+      bookDiv.textContent += " (Read)";
     } else {
-        bookDiv.textContent += ' (Not Read)';
+      bookDiv.textContent += " (Not Read)";
     }
 
-    bookDel.addEventListener('click',createDeleteHandler());
+    bookDel.addEventListener("click", createDeleteHandler());
 
-    bookRead.addEventListener('click', () => {
+    bookRead.addEventListener("click", () => {
       book.haveRead = true;
-      displayLibrary()
-    })
+      displayLibrary();
+    });
 
     booksContainer.appendChild(bookDivContainer);
     bookDivContainer.appendChild(bookDiv);
@@ -114,4 +112,4 @@ function createDeleteHandler(index) {
   };
 }
 
-displayLibrary()
+displayLibrary();
