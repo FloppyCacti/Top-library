@@ -22,7 +22,7 @@ addBook.addEventListener("click", () => {
   bookForm.showModal();
 });
 
-bookForm.addEventListener("submit", (event) => {
+bookForm.addEventListener("submit", () => {
   event.preventDefault();
 
   const title = titleValue.value;
@@ -45,7 +45,7 @@ bookForm.addEventListener("submit", (event) => {
   bookForm.close();
 });
 
-cancelValue.addEventListener("click", (event) => {
+cancelValue.addEventListener("click", () => {
   titleValue.value = "";
   authorValue = "";
   pageValue = "";
